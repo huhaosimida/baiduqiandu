@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>No.1 - 制作一个简单的菜单动画效果</title>
+</head>
+<style>
+	.box{
+		margin: 0 auto;
+		width: 300px;
+		margin-top: 100px;
+	}
+	#head{
+		width: 135px;
+		margin-bottom: 30px;
+		color: #292928;
+		padding: 5px 5px;
+		border-bottom: 0 solid #2F57B2;
+		transition: all 0.4s ease;
+	}
+	#switch{
+		width: 100px;
+		margin-left: 10px;
+		border-radius:8px;
+		background-color: #FFFFFF;
+	}
+</style>
+<body>
+	<div class="box">
+		<h1 id="head">前端学院</h1>
+		<button id="switch">切换样式</button>
+	</div>
+
+<script>
+	var button = document.getElementById('switch');
+	var head = document.getElementById('head');
+	button.onclick = function(){
+		head.style.cssText = "border-bottom: 3px solid #2F57B2;color:#2F57B2";
+		setTimeout(function(){
+			head.style.cssText = "border-bottom: 0 solid #2F57B2;color:#292928";
+		},1000)
+	}
+</script>
+</body>
+</html>
