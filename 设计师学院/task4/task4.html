@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>No.4 - 3D 空间的卡片翻转动效</title>
+<style>
+    .wrap {
+         margin: 200px 200px 200px 600px;
+         position: relative;
+         display: inline-block;
+         transform-style: preserve-3d;
+         transform: perspective(1000px);
+     }
+    img {
+    	position: absolute;
+    	transition: 1s linear;
+    }
+    .reverse {
+    	z-index: 1;
+    	transform: rotateY(-180deg);
+    }
+  	.obverse {
+    	z-index: 2;
+    }
+  	.wrap:hover .obverse {
+    	transform: rotateY(180deg);
+    }
+  	.wrap:hover .reverse {
+        transform: rotateY(0);
+    }
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<img src="img/obverse.jpg" class="obverse">
+		<img src="img/reverse.jpg" class="reverse"> 
+	</div>
+</body>
+</html>
