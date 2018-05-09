@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>No.6 - 利用 CSS animation 制作一个炫酷的 Slider</title>
+    <style>
+        body,html{
+            height: 100%;
+            margin: 0;
+        }
+        .wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .bgimg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('images/2.jpg') no-repeat center/cover;
+        }
+        .bar {
+            position: absolute;
+            margin:auto;
+            width: 60%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: rgba(0, 0, 0, .2);
+        }
+        .bar div {
+            position: relative;
+            margin: 10px;
+            flex: auto;
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
+        .bar div::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .3);
+            /*不太明白该属性*/
+            pointer-events:none;
+        }
+        /*图片高亮*/
+        .bar div:hover::after {
+            background: rgba(0, 0, 0, 0);
+            
+        }
+        .bar img {
+            width: 100%;
+            height: 100%;
+        }
+        @keyframes one {
+            from {
+                left: -500px;
+            }
+            to {
+                left: 0;
+            }
+        }
+        @keyframes two {
+            from {
+                top: 350px;
+            }
+            to {
+                top: 0;
+            }
+        }
+        @keyframes three {
+            from {
+                transform: scale(0.1);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        @keyframes four {
+            from {
+                transform: scale(2);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        @keyframes five {
+            from {
+                transform: rotate(-360deg) scale(0.1);
+            }
+            to {
+                transform: rotate(0deg) scale(1);
+            }
+        }   
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="bgimg"></div>
+        <div class="bar">
+            <div><img src="images/1.jpg"></div>
+            <div><img src="images/2.jpg"></div>
+            <div><img src="images/3.jpg"></div>
+            <div><img src="images/4.jpg"></div>
+            <div><img src="images/5.jpg"></div>
+        </div>
+    </div>
+<script>
+    var bgimg = document.getElementsByClassName('bgimg')[0];
+    var bar = document.getElementsByClassName("bar")[0];
+    var imgs = bar.getElementsByTagName('img');
+    // 需要的动画特效
+    var animations = [
+                'one 0.5s ease-out',
+                'two 0.5s ease-out',
+                'three 1s ease-in',
+                'four 1s ease-out',
+                'five 0.7s ease-in-out',
+            ];
+    // 遍历所有的Img        
+    for(var i=0;i<imgs.length;i++){
+        imgs[i].index=i;
+        imgs[i].onclick=function(){
+            var url = this.getAttribute('src');
+            bgimg.style.backgroundImage = 'url(' + url + ')';
+            bgimg.style.animation = animations[this.index];
+        }
+    }
+</script>
+</body>
+
+</html>
